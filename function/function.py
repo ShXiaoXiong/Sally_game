@@ -3,6 +3,7 @@ import pygame
 
 from Role import Sally
 from Settings import Settings
+import game_functions as gf
 
 def run_game():
     pygame.init()
@@ -16,12 +17,14 @@ def run_game():
     sally=Sally(screen)
 
     while True:
-        for event in pygame.event.get():
-            if event.type==pygame.QUIT:
-                sys.exit()
-        screen.fill(ai_settings.bg_color)
+        gf.check_event(sally)
+        
+        #屏幕更新写在此处，避免循环引用
+        background = pygame.image.load('back.png').convert()
+        screen.blit(background,(0,0))
         sally.blitme()
         pygame.display.flip()
+
 
 run_game()
 

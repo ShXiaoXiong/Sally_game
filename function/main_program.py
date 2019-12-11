@@ -12,6 +12,7 @@ def run_game():
     pygame.init()
     pygame.display.set_caption('莎莉打豆豆')
     
+    #创建屏幕
     ai_settings=Settings()
     screen=pygame.display.set_mode((ai_settings.screen_width,ai_settings.screen_height))
 
@@ -20,22 +21,12 @@ def run_game():
     #在循环外部创建子弹编组
     bullets=Group()
    
-    #游戏主循环
+    #游戏主循环：检查玩家输入，然后更新sally，更新子弹，重绘屏幕
     while True:
-        gf.check_event(sally,ai_settings,screen,bullets)
-        
+        gf.check_event(screen,ai_settings,sally,bullets)
         sally.update()
-        bullets.update()
-        #屏幕背景更新写在sally.update()和sally.biltme()中间，避免循环引用
-        
-        background = pygame.image.load('back.png').convert()
-        screen.blit(background,(0,0))
-        
-        for bullet in bullets.sprites():
-            bullet.draw_bullet()
-
-        sally.blitme()
-        pygame.display.flip()
+        gf.update_bullets(bullets)   
+        gf.update_screen(screen,bullets,sally)
 
 
 run_game()

@@ -24,6 +24,11 @@
     <Compile Include="function.py" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bullet\Bullet.pyproj">
+      <Name>Bullet</Name>
+      <Project>{03348981-0845-463b-8f4b-aba47a269013}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Role\Role.pyproj">
       <Name>Role</Name>
       <Project>{791191fb-cf5f-4514-b44b-931941743a41}</Project>

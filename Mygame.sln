@@ -9,6 +9,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Role", "Role\Role.pyproj", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Settings", "Settings\Settings.pyproj", "{AA7A19BE-E0C3-4D57-98E3-7408F1A44D40}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Bullet", "Bullet\Bullet.pyproj", "{03348981-0845-463B-8F4B-ABA47A269013}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{791191FB-CF5F-4514-B44B-931941743A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA7A19BE-E0C3-4D57-98E3-7408F1A44D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA7A19BE-E0C3-4D57-98E3-7408F1A44D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03348981-0845-463B-8F4B-ABA47A269013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03348981-0845-463B-8F4B-ABA47A269013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

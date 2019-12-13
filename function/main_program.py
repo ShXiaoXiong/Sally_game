@@ -1,11 +1,12 @@
 import sys
 import pygame
 
-from Role import Sally
+from class_Player import Sally
+from class_Guai import Guai
 from Settings import Settings
 from pygame.sprite import Group
 import game_functions as gf
-from Bullet import Bullet
+from class_Bullet import Bullet
 
 #主程序，创建了一系列整个游戏都要用到的对象
 def run_game():
@@ -18,6 +19,8 @@ def run_game():
 
     #创建角色
     sally=Sally(screen,ai_settings)
+    guais=Group()
+    gf.create_fleet(screen,ai_settings,guais)
     #在循环外部创建子弹编组
     bullets=Group()
    
@@ -26,8 +29,7 @@ def run_game():
         gf.check_event(screen,ai_settings,sally,bullets)
         sally.update()
         gf.update_bullets(bullets)   
-        gf.update_screen(screen,bullets,sally)
-
+        gf.update_screen(screen,bullets,sally,guais)
 
 run_game()
 

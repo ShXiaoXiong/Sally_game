@@ -5,8 +5,10 @@ class Bullet(Sprite):
     def __init__(self,screen,ai_settings,sally):
         super().__init__()
         self.screen=screen
+        
+        self.image=pygame.image.load('bullet.png')
         #创建矩形
-        self.rect=pygame.Rect(0,0,ai_settings.bullet_width,ai_settings.bullet_height)
+        self.rect=self.image.get_rect()
         #调整位置
         self.rect.centerx=sally.rect.centerx
         self.rect.top=sally.rect.top
@@ -15,7 +17,6 @@ class Bullet(Sprite):
         self.y_coordinate=float(self.rect.top)
 
         #多一步，存储了子弹的颜色和速度
-        self.color=ai_settings.bullet_color
         self.speed_factor=ai_settings.bullet_speed_factor
 
         #更新位置
@@ -27,4 +28,4 @@ class Bullet(Sprite):
 
     #绘制子弹
     def draw_bullet(self):
-        pygame.draw.rect(self.screen,self.color,self.rect)
+        self.screen.blit(self.image,self.rect)

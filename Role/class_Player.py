@@ -38,6 +38,6 @@ class Sally():
         self.rect.centerx=self.x_coordinate
         self.rect.bottom=self.y_coordinate
 
-    #重新绘制
+    #重新绘制玩家
     def blitme(self):
         self.screen.blit(self.image,self.rect)

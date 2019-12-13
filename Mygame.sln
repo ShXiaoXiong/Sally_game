@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "main program", "function\main program.pyproj", "{043D8847-90B6-4EB4-800D-436340F80B4C}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Role", "Role\Role.pyproj", "{791191FB-CF5F-4514-B44B-931941743A41}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "class_Player", "Role\class_Player.pyproj", "{791191FB-CF5F-4514-B44B-931941743A41}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Settings", "Settings\Settings.pyproj", "{AA7A19BE-E0C3-4D57-98E3-7408F1A44D40}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Bullet", "Bullet\Bullet.pyproj", "{03348981-0845-463B-8F4B-ABA47A269013}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "class_Bullet", "Bullet\class_Bullet.pyproj", "{03348981-0845-463B-8F4B-ABA47A269013}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "class_Guai", "class_Guai\class_Guai.pyproj", "{73D94ADF-F754-489C-85B1-0BC0DE9CFDD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,8 @@ Global
 		{AA7A19BE-E0C3-4D57-98E3-7408F1A44D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03348981-0845-463B-8F4B-ABA47A269013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03348981-0845-463B-8F4B-ABA47A269013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D94ADF-F754-489C-85B1-0BC0DE9CFDD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D94ADF-F754-489C-85B1-0BC0DE9CFDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

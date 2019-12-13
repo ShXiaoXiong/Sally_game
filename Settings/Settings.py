@@ -11,9 +11,6 @@ class Settings():
         #玩家移动速度
         self.speed_factor=3.5
 
-        #子弹设置
+        #子弹设置（图片在类中设置）
         self.bullet_speed_factor=5.5
-        self.bullet_width=20
-        self.bullet_height=50
-        self.bullet_color=(12,42,53)
         self.bullet_allowed=5

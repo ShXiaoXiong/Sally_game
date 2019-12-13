@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>043d8847-90b6-4eb4-800d-436340f80b4c</ProjectGuid>
+    <ProjectGuid>791191fb-cf5f-4514-b44b-931941743a41</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>main_program.py</StartupFile>
-    <SearchPath>..\Role;..\Bullet</SearchPath>
+    <StartupFile>class_Player.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>main program</Name>
-    <RootNamespace>function</RootNamespace>
+    <Name>class_Player</Name>
+    <RootNamespace>Role</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,24 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="main_program.py" />
+    <Compile Include="class_Player.py" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bullet\Bullet.pyproj">
-      <Name>Bullet</Name>
-      <Project>{03348981-0845-463b-8f4b-aba47a269013}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\class_Guai\class_Guai.pyproj">
-      <Name>class_Guai</Name>
-      <Project>{73d94adf-f754-489c-85b1-0bc0de9cfdd4}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Role\Role.pyproj">
-      <Name>Role</Name>
-      <Project>{791191fb-cf5f-4514-b44b-931941743a41}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <ProjectReference Include="..\Settings\Settings.pyproj">
       <Name>Settings</Name>
       <Project>{aa7a19be-e0c3-4d57-98e3-7408f1a44d40}</Project>

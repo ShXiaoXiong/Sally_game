@@ -16,7 +16,7 @@ def check_keydown_event(event,screen,ai_settings,sally,bullets):
     if event.key==pygame.K_SPACE:
         fire_bullet(bullets,ai_settings,screen,sally)
     elif event.key==pygame.K_q:
-        sys.exit()
+            sys.exit()
         
 #开火
 def fire_bullet(bullets,ai_settings,screen,sally):
@@ -46,6 +46,8 @@ def check_event(screen,ai_settings,sally,bullets):
             #此处用elif，是因为只可能存在一种情况
             elif event.type==pygame.KEYUP:
                 check_keyup_event(event,sally)
+###########################
+
 #更新子弹
 def update_bullets(bullets):
     bullets.update()
@@ -54,30 +56,47 @@ def update_bullets(bullets):
         if bullet.rect.bottom<=0:
             bullets.remove(bullet)
 
-
-#创建第一个怪，然后计算空间
+###########################
+#计算分配给空间，并创建舰队
 def create_fleet(screen,ai_settings,guais):
     #创建一个怪，读取他的长宽属性，这个怪并不加入编组，是工具怪
     guai=Guai(screen,ai_settings)
     guai_width=float(guai.rect.width)
     guai_height=float(guai.rect.height)
-    #计算可用空间：左右各空半格，上方空0.2格
+    #计算可用空间：左右各空半格，上方空
     available_space_x=ai_settings.screen_width-guai_width
-    available_space_y=0.4*ai_settings.screen_height-0.2*guai_height
+    available_space_y=ai_settings.screen_height-6*guai_height
     #计算可放的最大数量：横向间距1个，纵向间距0.2个
     number_guai_x=int(available_space_x/(2*guai_width))
     number_guai_y=int(available_space_y/(1.2*guai_height))    
-    
-    #创建循环
+    #创建怪群
     for xx in range(number_guai_x):
-        guai=Guai(screen,ai_settings)#正式生成一个怪        
-        #重新定x坐标
-        guai.rect.x=0.5*guai_width+2*guai_width*(xx-1)
-        #重新定y坐标，为循环，每次循环后加入编组
         for yy in range(number_guai_y):
-            guai.rect.y=0.2*guai_height+1.2*guai_height*(yy-1)
+            guai=Guai(screen,ai_settings)#正式生成一个怪        
+            #重新定x坐标，左边空0.5个怪的宽
+            guai.rect.x=0.5*guai_width+2*guai_width*xx
+            #重新定y坐标，上方空一个怪的高
+            guai.rect.y=guai_height+1.2*guai_height*yy
             guais.add(guai)
 
+####################
+#移动方式1   
+#检查事项：是否有任意怪撞墙，并执行撞墙动作
+def check_fleet_edge(guais):
+    for guai in guais:
+        if guai.check_edge():#遍历怪，如果有任一撞墙，全部执行撞墙动作，然后break，因为可能有多行怪
+            change_fleet_direction_drop(guais)
+            break
+           
+#撞墙动作：全部怪下移并调整方向
+def change_fleet_direction_drop(guais):
+    for guai in guais:
+        guai.guai_direction=-1*guai.guai_direction#Guai中已经存储为属性
+        guai.rect.y += guai.ai_settings.guai_drop_speed_factor
+
+def update_guais(guais): 
+    check_fleet_edge(guais)
+    guais.update()
 
 
 #重绘屏幕

@@ -10,6 +10,13 @@ class Settings():
         
         #玩家移动速度
         self.speed_factor=3.5
+        
+        #怪移动速度
+        self.guai_speed_factor=2
+        self.guai_drop_speed_factor=20
+        self.guai_direction=1
+
+
 
         #子弹设置（图片在类中设置）
         self.bullet_speed_factor=5.5

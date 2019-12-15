@@ -21,6 +21,7 @@ def run_game():
     sally=Sally(screen,ai_settings)
     guais=Group()
     gf.create_fleet(screen,ai_settings,guais)
+
     #在循环外部创建子弹编组
     bullets=Group()
    
@@ -29,6 +30,7 @@ def run_game():
         gf.check_event(screen,ai_settings,sally,bullets)
         sally.update()
         gf.update_bullets(bullets)   
+        gf.update_guais(guais)
         gf.update_screen(screen,bullets,sally,guais)
 
 run_game()

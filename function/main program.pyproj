@@ -6,7 +6,7 @@
     <ProjectHome>
     </ProjectHome>
     <StartupFile>main_program.py</StartupFile>
-    <SearchPath>..\Role;..\Bullet</SearchPath>
+    <SearchPath>..\Role;..\Bullet;..\game_stats</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>main program</Name>
@@ -21,7 +21,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="game_functions.py" />
     <Compile Include="main_program.py" />
+    <Compile Include="button.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bullet\Bullet.pyproj">

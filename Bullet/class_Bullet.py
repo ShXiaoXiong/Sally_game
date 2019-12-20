@@ -22,9 +22,9 @@ class Bullet(Sprite):
         #更新位置
     def update(self):
         self.y_coordinate -= self.speed_factor
-        self.rect.top= self.y_coordinate
         #反赋值，更新位置
-        
+        self.rect.top= self.y_coordinate
+   
 
     #绘制子弹
     def draw_bullet(self):

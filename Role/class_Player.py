@@ -9,7 +9,7 @@ class Sally():
         self.rect=self.image.get_rect()
         self.screen_rect=screen.get_rect()
 
-        #初始位置
+        #初始位置：和screen作比较
         self.rect.centerx=self.screen_rect.centerx
         self.rect.bottom=self.screen_rect.bottom
         
@@ -37,6 +37,11 @@ class Sally():
 
         self.rect.centerx=self.x_coordinate
         self.rect.bottom=self.y_coordinate
+
+    #重置回到初始位置，使用后续位置坐标
+    def reset_location(self):
+        self.x_coordinate=self.screen_rect.centerx
+        self.y_coordinate=self.screen_rect.bottom
 
     #重新绘制玩家
     def blitme(self):

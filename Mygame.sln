@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "class_Bullet", "Bullet\clas
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "class_Guai", "class_Guai\class_Guai.pyproj", "{73D94ADF-F754-489C-85B1-0BC0DE9CFDD4}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "game_stats", "game_stats\game_stats.pyproj", "{7F0F2060-EF74-4430-9AD3-39E6EDD86BB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,8 @@ Global
 		{03348981-0845-463B-8F4B-ABA47A269013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73D94ADF-F754-489C-85B1-0BC0DE9CFDD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73D94ADF-F754-489C-85B1-0BC0DE9CFDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F0F2060-EF74-4430-9AD3-39E6EDD86BB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F0F2060-EF74-4430-9AD3-39E6EDD86BB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

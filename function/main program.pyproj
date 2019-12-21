@@ -21,11 +21,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="class_Bullet.py" />
+    <Compile Include="class_Guai.py" />
+    <Compile Include="class_Player.py" />
     <Compile Include="game_functions.py" />
+    <Compile Include="game_stats.py" />
     <Compile Include="main_program.py" />
     <Compile Include="button.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scoreboard.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Settings.py" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bullet\Bullet.pyproj">

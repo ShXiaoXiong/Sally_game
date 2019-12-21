@@ -1,13 +1,16 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Sally():
+class Sally(Sprite):
     def __init__(self,screen,ai_settings):
+        super(Sally,self).__init__()
         self.screen=screen
         self.ai_settings=ai_settings
 
         self.image=pygame.image.load('sally.png')
         self.rect=self.image.get_rect()
         self.screen_rect=screen.get_rect()
+
 
         #初始位置：和screen作比较
         self.rect.centerx=self.screen_rect.centerx
@@ -46,3 +49,12 @@ class Sally():
     #重新绘制玩家
     def blitme(self):
         self.screen.blit(self.image,self.rect)
+
+class Xueliang(Sprite):
+    def __init__(self,screen,ai_settings):
+        super().__init__()#精灵必须要的，或者写成Sprite.__init__(self)
+        self.screen=screen
+        self.ai_settings=ai_settings
+        self.image=pygame.image.load('xueliang.png')
+        self.rect=self.image.get_rect()
+        self.screen_rect=screen.get_rect()

@@ -37,14 +37,14 @@ def check_keyup_event(event,sally):
         sally.moving_down=False
     
 #检查时间：为了获取用户输入，首先是退出事件，然后鼠标、键盘
-def check_event(screen,ai_settings,sally,bullets,play_button,stats):
+def check_event(play_button,stats,screen,ai_settings,guais,sally,bullets):
     for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 sys.exit()
            
             elif event.type==pygame.MOUSEBUTTONDOWN:
                 mouse_x,mouse_y=pygame.mouse.get_pos()#获取鼠标点击的位置
-                check_play_button(play_button,mouse_x,mouse_y,stats)
+                check_play_button(play_button,mouse_x,mouse_y,stats,screen,ai_settings,guais,sally,bullets)
 
             elif event.type==pygame.KEYDOWN:
                 check_keydown_event(event,screen,ai_settings,sally,bullets)
@@ -54,15 +54,24 @@ def check_event(screen,ai_settings,sally,bullets,play_button,stats):
                 check_keyup_event(event,sally)
 
 #检查鼠标点击的位置，整个rect都算，所以按键必须是方形的
-#写在一起更好，因为mouse_x,mouse_y是内部引用
-def check_play_button(play_button,mouse_x,mouse_y,stats):
-    if play_button.rect.collidepoint(mouse_x,mouse_y):
-        stats.game_active = True
+#mouse_x,mouse_y是内部引用
+def check_play_button(play_button,mouse_x,mouse_y,stats,screen,ai_settings,guais,sally,bullets):
+    if play_button.rect.collidepoint(mouse_x,mouse_y) and not stats.game_active:#否则点到中间位置rect，依然重置
+        stats.reset_stats()
+        stats.game_active = True#开始游戏的标记
+        ai_settings.initialize_dynamic_settings()#重置游戏设置
+        pygame.mouse.set_visible(False)#隐藏光标
+
+        guais.empty()
+        bullets.empty()
+
+        create_fleet(screen,ai_settings,guais)
+        sally.reset_location()
 
 ###########################
 
-#更新子弹：更新子弹的位置-删除飞出屏幕的子弹-检查碰撞
-def update_bullets(bullets,screen,ai_settings,guais):
+#更新子弹：更新子弹的位置-删除飞出屏幕的子弹-检查碰撞并删除两个对象-计分
+def update_bullets(bullets,screen,ai_settings,guais,stats,sb):
     bullets.update()
 
     for bullet in bullets.copy():
@@ -72,9 +81,17 @@ def update_bullets(bullets,screen,ai_settings,guais):
     #每一次更新子弹位置后，检查碰撞，删除碰撞的bullets及guais
     collisions=pygame.sprite.groupcollide(bullets,guais,True,True)
 
+    if collisions:
+        for guais in collisions.values():
+            stats.score += ai_settings.guai_points * len(guais)
+            sb.prep_score()  #每次都生成新的得分图像
+ 
     #因为在此处被消灭，所以在此处检查编组alians是否为空
     if len(guais)==0:
+        ai_settings.increase_speed()#重新生成怪前，加速
         create_fleet(screen,ai_settings,guais)
+        stats.level += 1  #难度加1
+        sb.prep_level() #更新难度
 
 ###########################
 #计算分配给空间，并创建舰队
@@ -115,20 +132,20 @@ def change_fleet_direction_drop(guais):
         guai.rect.y += guai.ai_settings.guai_drop_speed_factor
 
 #更新怪：
-def update_guais(sally,stats,bullets,screen,ai_settings,guais): 
+def update_guais(sally,stats,bullets,screen,ai_settings,guais,sb): 
     check_fleet_edge(guais)
     guais.update()
     #spritecollideany（）接受两个实参，一个精灵和一个编组，所以必须按顺序写
     if pygame.sprite.spritecollideany(sally,guais):
-        sally_hit(stats,bullets,screen,ai_settings,guais,sally)
-    check_guai_bottom(stats,bullets,screen,ai_settings,guais,sally)
+        sally_hit(stats,bullets,screen,ai_settings,guais,sally,sb)
+    check_guai_bottom(stats,bullets,screen,ai_settings,guais,sally,sb)
 
 
 #死亡事件：Sally被撞倒
-def sally_hit(stats,bullets,screen,ai_settings,guais,sally):
+def sally_hit(stats,bullets,screen,ai_settings,guais,sally,sb):
     if stats.sally_left>0:
         stats.sally_left -=1
-
+        sb.prep_xueliang()#更新记分牌
         #清空两个编组
         guais.empty()
         bullets.empty()
@@ -138,13 +155,14 @@ def sally_hit(stats,bullets,screen,ai_settings,guais,sally):
         create_fleet(screen,ai_settings,guais)
         sally.reset_location()
     else:
-        self.game_active=True
+        stats.game_active=False
+        pygame.mouse.set_visible(True)#非活动状态后，光标可见
 
 #死亡事件：怪到底部
-def check_guai_bottom(stats,bullets,screen,ai_settings,guais,sally):
+def check_guai_bottom(stats,bullets,screen,ai_settings,guais,sally,sb):
     for guai in guais:
         if guai.rect.bottom>=ai_settings.screen_height:
-            sally_hit(stats,bullets,screen,ai_settings,guais,sally)
+            sally_hit(stats,bullets,screen,ai_settings,guais,sally,sb)
             break
 
 
@@ -158,8 +176,9 @@ def update_screen(screen,stats,play_button):
         play_button.draw_button()
     
 
-def update_objects(bullets,sally,guais,screen):
+def update_objects(bullets,sally,guais,screen,sb):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     sally.blitme()
     guais.draw(screen)
+    sb.draw_board()
